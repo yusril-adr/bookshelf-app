@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack --config webpack.prod.js",
     "start": "node server",
-    "build&start": "npm run build && npm run start",
+    "build-start": "npm run build && npm run start",
     "start-dev": "webpack serve --config webpack.dev.js",
     "graph": "git log --all --oneline --text --decorate --graph"
   },

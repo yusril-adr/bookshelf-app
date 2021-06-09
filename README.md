@@ -9,7 +9,7 @@ Hasil pengerjaan submission saya pada salah satu kelas dari Dicoding yaitu Belaj
 ```
 - Build dan jalankan server langsung dengan perintah :
 ```bash 
-  npm run build&start
+  npm run build-start
 ```
 ---
 ## LICENSE
