@@ -1,0 +1,16 @@
+main {
+  min-height: calc(90vh - 70px);
+}
+
+.btn-float {
+  position: fixed;
+  width: 44px;
+  height: 44px;
+  bottom: 1.25rem;
+  right: 1.25rem;
+  z-index: 10;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
