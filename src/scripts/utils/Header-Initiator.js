@@ -1,8 +1,22 @@
+import { Collapse } from 'bootstrap';
 import CONFIG from '../global/CONFIG';
 import GoTo from '../routes/Go-To';
 
 const HeaderInitiator = {
   async init(headerElem) {
+    const menuToggle = document.getElementById('navbarSupportedContent');
+    const bsCollapse = new Collapse(menuToggle, {
+      toggle: false,
+    });
+
+    headerElem.querySelectorAll('a').forEach((elem) => {
+      elem.addEventListener('click', () => bsCollapse.hide());
+    });
+
+    headerElem.querySelectorAll('button').forEach((elem) => {
+      elem.addEventListener('click', () => bsCollapse.hide());
+    });
+
     await this._initSearchFormSubmitEvent(headerElem);
   },
 

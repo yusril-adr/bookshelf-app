@@ -12,7 +12,7 @@ const createBookItemTemplate = ({
         class="col-4 d-flex align-items-center justify-content-center"
       >
         <i
-          class="h1 fas fa-book text-secondary"
+          class="h1 fw-bold fas fa-book text-secondary"
           aria-label="Illustration"
         ></i>
       </div>
