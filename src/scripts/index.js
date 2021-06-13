@@ -7,9 +7,13 @@ import '../styles/style.scss';
 import App from './views/app';
 
 window.addEventListener('load', async () => {
-  App.initPage();
+  App.init();
 });
 
 window.addEventListener('popstate', async () => {
-  App.initPage();
+  App.init();
+});
+
+window.addEventListener('changePage', async () => {
+  App.init();
 });
