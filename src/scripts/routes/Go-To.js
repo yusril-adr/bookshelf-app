@@ -1,5 +1,3 @@
-import { urlencoded } from "express";
-
 const GoTo = {
   async page(path) {
     window.history.pushState(
@@ -8,7 +6,7 @@ const GoTo = {
       `${window.location.origin}${path}`,
     );
 
-    window.dispatchEvent(new Event('changePage'));
+    window.dispatchEvent(new Event('updatePage'));
   },
 
   async url(rawUrl) {
@@ -21,7 +19,7 @@ const GoTo = {
     );
 
     if (url.origin === window.location.origin) {
-      window.dispatchEvent(new Event('changePage'));
+      window.dispatchEvent(new Event('updatePage'));
     }
   },
 };

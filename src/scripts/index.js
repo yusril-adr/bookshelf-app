@@ -6,14 +6,19 @@ import '../styles/style.scss';
 
 import App from './views/app';
 
+const app = new App({
+  header: document.querySelector('header'),
+  content: document.querySelector('main'),
+});
+
 window.addEventListener('load', async () => {
-  App.init();
+  app.renderPage();
 });
 
 window.addEventListener('popstate', async () => {
-  App.init();
+  app.renderPage();
 });
 
-window.addEventListener('changePage', async () => {
-  App.init();
+window.addEventListener('updatePage', async () => {
+  app.renderPage();
 });

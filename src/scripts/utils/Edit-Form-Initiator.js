@@ -1,48 +1,49 @@
+import { Modal } from 'bootstrap';
 import Swal from 'sweetalert2';
 import Book from '../data/Book';
 import GoTo from '../routes/Go-To';
-import Toast from '../utils/Toast-Initiator';
+import { createEditFormTemplate } from '../views/templates';
+import Toast from './Toast-Initiator';
 
-const FormInitiator = {
-  async initEditForm({
+const EditFormInitiator = {
+  async init({
     formId,
     booksElements,
     deleteBtnId,
   }) {
-    await this._autoUpdateValueFromElement(formId, booksElements);
-
-    await this._initEditFormSubmitEvent(formId);
-    await this._initDeleteBtn(formId, deleteBtnId);
+    await this._initAllEditBtns(formId, booksElements, deleteBtnId);
   },
 
-  async _autoUpdateValueFromElement(formId, elementQuery) {
+  async _initAllEditBtns(formId, elementQuery, deleteBtnId) {
     const bookElems = document.querySelectorAll(elementQuery);
 
     bookElems.forEach((bookItem) => {
       bookItem.querySelector('.edit-btn').addEventListener('click', async (event) => {
         event.stopPropagation();
 
-        await this._updateFormValueFrom(formId, bookItem);
+        await this._showEditForm(formId, bookItem);
+        await this._initDeleteBtn(formId, deleteBtnId);
       });
     });
   },
 
-  async _updateFormValueFrom(formId ,element) {
+  async _showEditForm(formId, element) {
     const bookId = parseInt(element.dataset.book_id, 10);
     const book = Book.getBookById(bookId);
 
-    const editForm = document.getElementById(formId);
+    document.getElementById('form-container').innerHTML = '';
+    document.getElementById('form-container').innerHTML = createEditFormTemplate({ formId, book });
 
-    editForm.querySelector('#edit-book-id').value = book.id;
-    editForm.querySelector('#edit-book-title').value = book.title;
-    editForm.querySelector('#edit-book-author').value = book.author;
-    editForm.querySelector('#edit-book-year').value = book.year;
-    editForm.querySelector('#edit-book-isComplete').checked = book.isComplete;
-  },
-
-  async _initEditFormSubmitEvent(formId) {
     const form = document.getElementById(formId);
 
+    const formModal = new Modal(form);
+    formModal.show();
+
+    form.addEventListener('hidden.bs.modal', () => formModal.dispose());
+    await this._initEditFormSubmitEvent(form);
+  },
+
+  async _initEditFormSubmitEvent(form) {
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
 
@@ -64,8 +65,8 @@ const FormInitiator = {
 
       form.reset();
 
-      const pagePath = isComplete ? '/' : '/uncompleted-list';
-      await GoTo.page(pagePath);
+      const redirectPage = isComplete ? '/' : '/uncompleted-list';
+      await GoTo.page(redirectPage);
     });
   },
 
@@ -96,7 +97,7 @@ const FormInitiator = {
         const closeBtn = form.querySelector('button[data-bs-dismiss=modal]');
         closeBtn.click();
 
-        await this._renderPage();
+        window.dispatchEvent(new Event('updatePage'));
 
         await Toast.fire({
           icon: 'success',
@@ -107,4 +108,4 @@ const FormInitiator = {
   },
 };
 
-export default FormInitiator;
+export default EditFormInitiator;

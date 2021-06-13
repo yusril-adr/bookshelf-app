@@ -1,4 +1,5 @@
-import Toast from '../utils/Toast-Initiator';
+import Book from '../data/Book';
+import Toast from './Toast-Initiator';
 
 const BookStatusToggler = {
   async init({
@@ -15,7 +16,7 @@ const BookStatusToggler = {
 
         Book.updateBook(bookId, { isComplete: !book.isComplete });
 
-        await this._renderPage();
+        window.dispatchEvent(new Event('updatePage'));
 
         await Toast.fire({
           icon: 'success',
@@ -23,7 +24,7 @@ const BookStatusToggler = {
         });
       });
     });
-  }
+  },
 };
 
 export default BookStatusToggler;

@@ -38,8 +38,6 @@ const createBookItemTemplate = ({
       </button>
       <button
         class="btn btn-primary d-flex align-items-center edit-btn"
-        data-bs-toggle="modal"
-        data-bs-target="#edit-book-modal"
       >
         <i class="far fa-edit me-2"></i>
         Edit
