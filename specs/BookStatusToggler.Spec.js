@@ -1,7 +1,6 @@
 import * as TestFactories from './helpers/testFactories';
 import Book from '../src/scripts/data/Book';
 import { createBookItemTemplate } from '../src/scripts/views/templates';
-import CONFIG from '../src/scripts/global/CONFIG';
 
 describe('Toggle book isComplete status', () => {
   const addBookElements = (books) => {
@@ -24,7 +23,7 @@ describe('Toggle book isComplete status', () => {
 
     addBookElements(books);
 
-    await TestFactories.createBookStatusTogglerPresenter(CONFIG.BOOK_ELEMENTS);
+    await TestFactories.createBookStatusTogglerPresenter();
 
     const toggleBtn = document.querySelector('.toggle-isComplete');
 
@@ -40,7 +39,7 @@ describe('Toggle book isComplete status', () => {
 
     addBookElements(books);
 
-    await TestFactories.createBookStatusTogglerPresenter(CONFIG.BOOK_ELEMENTS);
+    await TestFactories.createBookStatusTogglerPresenter();
 
     const toggleBtn = document.querySelector('.toggle-isComplete');
 
@@ -56,13 +55,16 @@ describe('Toggle book isComplete status', () => {
 
     addBookElements(books);
 
-    await TestFactories.createBookStatusTogglerPresenter(CONFIG.BOOK_ELEMENTS);
+    await TestFactories.createBookStatusTogglerPresenter();
 
     const toggleBtn = document.querySelector('.toggle-isComplete');
     toggleBtn.dispatchEvent(new Event('click'));
 
-    expect(Book.getBookById(bookId))
-      .toEqual({ id: bookId, isComplete: false });
+    // Wait for toast animation complete
+    setTimeout(() => {
+      expect(Book.getBookById(bookId))
+        .toEqual({ id: bookId, isComplete: false });
+    }, 500);
   });
 
   it('should update isComplete status to true when the book is not completed yet', async () => {
@@ -73,12 +75,15 @@ describe('Toggle book isComplete status', () => {
 
     addBookElements(books);
 
-    await TestFactories.createBookStatusTogglerPresenter(CONFIG.BOOK_ELEMENTS);
+    await TestFactories.createBookStatusTogglerPresenter();
 
     const toggleBtn = document.querySelector('.toggle-isComplete');
     toggleBtn.dispatchEvent(new Event('click'));
 
-    expect(Book.getBookById(bookId))
-      .toEqual({ id: bookId, isComplete: true });
+    // Wait for toast animation complete
+    setTimeout(() => {
+      expect(Book.getBookById(bookId))
+        .toEqual({ id: bookId, isComplete: true });
+    }, 500);
   });
 });

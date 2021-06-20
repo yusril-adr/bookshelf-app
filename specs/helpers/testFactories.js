@@ -1,6 +1,8 @@
+import CONFIG from '../../src/scripts/global/CONFIG';
 import Book from '../../src/scripts/data/Book';
 import NewBookFormInitiator from '../../src/scripts/utils/New-Book-Form-Initiator';
 import BookStatusToggler from '../../src/scripts/utils/Book-Status-Toggler';
+import EditFormInitiator from '../../src/scripts/utils/Edit-Form-Initiator';
 
 const createNewBookFormPresenter = async ({ formId, togglerBtnId }) => {
   await NewBookFormInitiator.init({
@@ -10,9 +12,18 @@ const createNewBookFormPresenter = async ({ formId, togglerBtnId }) => {
   });
 };
 
-const createBookStatusTogglerPresenter = async (bookElements) => {
+const createBookStatusTogglerPresenter = async () => {
   await BookStatusToggler.init({
-    bookElements,
+    booksElements: CONFIG.BOOK_ELEMENTS,
+    BookModel: Book,
+  });
+};
+
+const createEditFormInitiatorPresenter = async ({ formId }) => {
+  await EditFormInitiator.init({
+    formId,
+    booksElements: CONFIG.BOOK_ELEMENTS,
+    deleteBtnId: CONFIG.DELETE_BTN_ID,
     BookModel: Book,
   });
 };
@@ -20,4 +31,5 @@ const createBookStatusTogglerPresenter = async (bookElements) => {
 export {
   createNewBookFormPresenter,
   createBookStatusTogglerPresenter,
+  createEditFormInitiatorPresenter,
 };
