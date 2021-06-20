@@ -35,34 +35,6 @@ describe('Adding a new book', () => {
       .toBeTruthy();
   });
 
-  xit('should hide the form modal when the submit event triggered', async () => {
-    await TestFactories.createNewBookFormPresenter({
-      togglerBtnId: TOGGLER_BTN_ID,
-      formId: FORM_ID,
-    });
-
-    const togglerBtn = document.getElementById(TOGGLER_BTN_ID);
-    togglerBtn.dispatchEvent(new Event('click'));
-
-    const titleInput = document.getElementById('new-book-title');
-    titleInput.value = 'Test Title';
-
-    const authorInput = document.getElementById('new-book-author');
-    authorInput.value = 'Test Author';
-
-    const yearInput = document.getElementById('new-book-year');
-    yearInput.value = new Date().getFullYear();
-
-    const isCompleteCheckBox = document.getElementById('new-book-isComplete');
-    isCompleteCheckBox.checked = true;
-
-    const submitBtn = document.querySelector('button[type=submit]');
-    submitBtn.click();
-
-    expect(document.getElementById(FORM_ID))
-      .toBeFalsy();
-  });
-
   it('should create a new Book when the submit button is pressed with valid input', async () => {
     await TestFactories.createNewBookFormPresenter({
       togglerBtnId: TOGGLER_BTN_ID,
@@ -132,7 +104,7 @@ describe('Adding a new book', () => {
     yearInput.value = testBookData.year;
 
     const submitBtn = document.querySelector('button[type=submit]');
-    submitBtn.dispatchEvent(new Event('click'));
+    submitBtn.click();
 
     expect(Book.getCompletedBooks())
       .toHaveSize(0);

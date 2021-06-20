@@ -11,6 +11,9 @@ describe('Toggle book isComplete status', () => {
     });
   };
 
+  beforeEach(() => {
+    document.body.innerHTML = '';
+  });
   afterEach(() => {
     Book.deleteAllBooks();
   });
@@ -77,7 +80,7 @@ describe('Toggle book isComplete status', () => {
     await TestFactories.createBookStatusTogglerPresenter();
 
     const toggleBtn = document.querySelector('.toggle-isComplete');
-    toggleBtn.dispatchEvent(new Event('click'));
+    toggleBtn.click();
 
     // Wait for toast animation complete
     setTimeout(() => {

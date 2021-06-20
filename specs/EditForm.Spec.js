@@ -119,7 +119,7 @@ describe('Edit a book', () => {
     isCompleteCheckBox.checked = updatedBookData.isComplete;
 
     const submitBtn = document.querySelector('button[type=submit]');
-    submitBtn.dispatchEvent(new Event('click'));
+    submitBtn.click();
 
     // Waiting for the close animation first
     setTimeout(() => {
@@ -173,7 +173,7 @@ describe('Edit a book', () => {
     isCompleteCheckBox.checked = updatedBookData.isComplete;
 
     const submitBtn = document.querySelector('button[type=submit]');
-    submitBtn.dispatchEvent(new Event('click'));
+    submitBtn.click();
 
     // Waiting for the close animation first
     setTimeout(() => {
