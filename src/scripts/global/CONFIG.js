@@ -7,6 +7,7 @@ const CONFIG = {
   BOOK_ELEMENTS: '.book-item',
   NEW_BOOK_FORM_ID: 'new-book-modal',
   EDIT_BOOK_FORM_ID: 'edit-book-modal',
+  TOGGLER_BTN_ELEMENT: '.toggle-isComplete',
   DELETE_BTN_ID: 'delete-btn',
 };
 

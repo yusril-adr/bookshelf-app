@@ -1,4 +1,5 @@
 import Toast from './Toast-Initiator';
+import CONFIG from '../global/CONFIG';
 
 const BookStatusToggler = {
   async init({
@@ -8,7 +9,7 @@ const BookStatusToggler = {
     const bookElems = document.querySelectorAll(bookElements);
 
     bookElems.forEach((bookItem) => {
-      bookItem.querySelector('.toggle-isComplete').addEventListener('click', async (event) => {
+      bookItem.querySelector(CONFIG.TOGGLER_BTN_ELEMENT).addEventListener('click', async (event) => {
         event.stopPropagation();
 
         const bookId = bookItem.dataset.book_id;
