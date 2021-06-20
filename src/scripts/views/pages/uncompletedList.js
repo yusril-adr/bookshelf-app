@@ -21,7 +21,7 @@ const uncompletedList = {
 
     const mainContent = document.querySelector(CONFIG.LIST_ELEMENT);
 
-    const books = Book.getUnCompletedBook();
+    const books = Book.getUnCompletedBooks();
 
     mainContent.innerHTML = '';
     if (books.length > 0) {

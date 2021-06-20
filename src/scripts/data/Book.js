@@ -1,14 +1,18 @@
+import { nanoid } from 'nanoid';
 import CONFIG from '../global/CONFIG';
 
 const Book = {
   createBook(newBook) {
     const books = this._getAllBooks();
 
+    const id = nanoid();
     const updatedBooks = [
-      { id: +new Date(), ...newBook },
+      { id, ...newBook },
       ...books,
     ];
     this._updateBooks(updatedBooks);
+
+    return id;
   },
 
   _getAllBooks() {
@@ -21,13 +25,13 @@ const Book = {
     window.localStorage.setItem(CONFIG.BOOK_KEY, newBooksJSON);
   },
 
-  getCompletedBook() {
+  getCompletedBooks() {
     const books = this._getAllBooks();
 
     return books.filter(({ isComplete }) => isComplete);
   },
 
-  getUnCompletedBook() {
+  getUnCompletedBooks() {
     const books = this._getAllBooks();
 
     return books.filter(({ isComplete }) => !isComplete);
@@ -68,6 +72,10 @@ const Book = {
     const updatedBooks = books.filter((book) => book.id !== id);
 
     this._updateBooks(updatedBooks);
+  },
+
+  deleteAllBooks() {
+    window.localStorage.removeItem(CONFIG.BOOK_KEY);
   },
 };
 

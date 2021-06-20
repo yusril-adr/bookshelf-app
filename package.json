@@ -4,11 +4,12 @@
   "description": "",
   "main": "server.js",
   "scripts": {
+    "graph": "git log --all --oneline --text --decorate --graph",
+    "start-dev": "webpack serve --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
     "start": "node server",
     "build-start": "npm run build && npm run start",
-    "start-dev": "webpack serve --config webpack.dev.js",
-    "graph": "git log --all --oneline --text --decorate --graph"
+    "karma": "karma start"
   },
   "repository": {
     "type": "git",
@@ -31,8 +32,15 @@
     "eslint": "^7.28.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-jasmine": "^4.1.2",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.3.1",
+    "jasmine-core": "^3.7.1",
+    "karma": "^6.3.4",
+    "karma-chrome-launcher": "^3.1.0",
+    "karma-firefox-launcher": "^2.1.1",
+    "karma-jasmine": "^4.0.1",
+    "karma-webpack": "^5.0.0",
     "mini-css-extract-plugin": "^1.6.0",
     "optimize-css-assets-webpack-plugin": "^6.0.0",
     "postcss": "^8.3.0",
@@ -51,6 +59,7 @@
     "@popperjs/core": "^2.9.2",
     "bootstrap": "^5.0.1",
     "express": "^4.17.1",
+    "nanoid": "^3.1.23",
     "regenerator-runtime": "^0.13.7",
     "sweetalert2": "^11.0.16"
   }
