@@ -57,14 +57,13 @@ describe('Toggle book isComplete status', () => {
 
     await TestFactories.createBookStatusTogglerPresenter();
 
-    const toggleBtn = document.querySelector('.toggle-isComplete');
-    toggleBtn.dispatchEvent(new Event('click'));
+    const toggleBtn = document.querySelector('button.toggle-isComplete');
+    toggleBtn.click();
 
-    // Wait for toast animation complete
     setTimeout(() => {
       expect(Book.getBookById(bookId))
         .toEqual({ id: bookId, isComplete: false });
-    }, 500);
+    }, 300);
   });
 
   it('should update isComplete status to true when the book is not completed yet', async () => {
