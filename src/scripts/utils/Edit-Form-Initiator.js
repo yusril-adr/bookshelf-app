@@ -28,7 +28,7 @@ const EditFormInitiator = {
   },
 
   async _showEditForm(formId, element) {
-    const bookId = parseInt(element.dataset.book_id, 10);
+    const bookId = element.dataset.book_id;
     const book = Book.getBookById(bookId);
 
     document.getElementById('form-container').innerHTML = '';
@@ -49,7 +49,7 @@ const EditFormInitiator = {
 
       const isComplete = event.target['edit-book-isComplete'].checked;
 
-      const bookId = parseInt(event.target['edit-book-id'].value, 10);
+      const bookId = event.target['edit-book-id'].value;
 
       const newData = {
         title: event.target['edit-book-title'].value,
@@ -91,7 +91,7 @@ const EditFormInitiator = {
       if (isConfirmed) {
         Swal.showLoading();
 
-        const bookId = parseInt(document.getElementById('edit-book-id').value, 10);
+        const bookId = document.getElementById('edit-book-id').value;
         Book.deleteBook(bookId);
 
         const closeBtn = form.querySelector('button[data-bs-dismiss=modal]');

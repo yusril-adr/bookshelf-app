@@ -11,7 +11,7 @@ const BookStatusToggler = {
       bookItem.querySelector('.toggle-isComplete').addEventListener('click', async (event) => {
         event.stopPropagation();
 
-        const bookId = parseInt(bookItem.dataset.book_id, 10);
+        const bookId = bookItem.dataset.book_id;
         const book = Book.getBookById(bookId);
 
         Book.updateBook(bookId, { isComplete: !book.isComplete });
