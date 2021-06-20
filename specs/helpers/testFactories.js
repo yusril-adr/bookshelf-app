@@ -1,5 +1,6 @@
 import Book from '../../src/scripts/data/Book';
 import NewBookFormInitiator from '../../src/scripts/utils/New-Book-Form-Initiator';
+import BookStatusToggler from '../../src/scripts/utils/Book-Status-Toggler';
 
 const createNewBookFormPresenter = async ({ formId, togglerBtnId }) => {
   await NewBookFormInitiator.init({
@@ -9,7 +10,14 @@ const createNewBookFormPresenter = async ({ formId, togglerBtnId }) => {
   });
 };
 
+const createBookStatusTogglerPresenter = async (bookElements) => {
+  await BookStatusToggler.init({
+    bookElements,
+    BookModel: Book,
+  });
+};
+
 export {
-  // eslint-disable-next-line import/prefer-default-export
   createNewBookFormPresenter,
+  createBookStatusTogglerPresenter,
 };
