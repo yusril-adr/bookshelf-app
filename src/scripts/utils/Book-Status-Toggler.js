@@ -1,9 +1,9 @@
-import Book from '../data/Book';
 import Toast from './Toast-Initiator';
 
 const BookStatusToggler = {
   async init({
     bookElements,
+    BookModel,
   }) {
     const bookElems = document.querySelectorAll(bookElements);
 
@@ -12,9 +12,9 @@ const BookStatusToggler = {
         event.stopPropagation();
 
         const bookId = bookItem.dataset.book_id;
-        const book = Book.getBookById(bookId);
+        const book = BookModel.getBookById(bookId);
 
-        Book.updateBook(bookId, { isComplete: !book.isComplete });
+        BookModel.updateBook(bookId, { isComplete: !book.isComplete });
 
         window.dispatchEvent(new Event('updatePage'));
 

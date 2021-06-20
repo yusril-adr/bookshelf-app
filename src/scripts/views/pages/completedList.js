@@ -35,16 +35,19 @@ const completedList = {
     await NewBookFormInitiator.init({
       formId: CONFIG.NEW_BOOK_FORM_ID,
       togglerBtnId: 'new-book-form-toggler',
+      BookModel: Book,
     });
 
     await BookStatusToggler.init({
       bookElements: CONFIG.BOOK_ELEMENTS,
+      BookModel: Book,
     });
 
     await EditFormInitiator.init({
       formId: CONFIG.EDIT_BOOK_FORM_ID,
       booksElements: CONFIG.BOOK_ELEMENTS,
       deleteBtnId: CONFIG.DELETE_BTN_ID,
+      BookModel: Book,
     });
   },
 };

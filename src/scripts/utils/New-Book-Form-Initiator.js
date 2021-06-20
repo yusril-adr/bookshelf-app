@@ -1,5 +1,4 @@
 import { Modal } from 'bootstrap';
-import Book from '../data/Book';
 import GoTo from '../routes/Go-To';
 import { createNewBookFormTemplate } from '../views/templates';
 
@@ -7,6 +6,7 @@ const NewBookFormInitiator = {
   async init({
     formId,
     togglerBtnId,
+    BookModel,
   }) {
     const togglerBtn = document.getElementById(togglerBtnId);
 
@@ -22,11 +22,11 @@ const NewBookFormInitiator = {
       formModal.show();
 
       form.addEventListener('hidden.bs.modal', () => formModal.dispose());
-      await this._initFormSubmitEvent(form, formModal);
+      await this._initFormSubmitEvent(form, BookModel);
     });
   },
 
-  async _initFormSubmitEvent(form) {
+  async _initFormSubmitEvent(form, BookModel) {
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
       event.stopPropagation();
@@ -40,7 +40,7 @@ const NewBookFormInitiator = {
         isComplete,
       };
 
-      Book.createBook(newBook);
+      BookModel.createBook(newBook);
 
       const closeBtn = event.target.querySelector('button[data-bs-dismiss=modal]');
       closeBtn.click();

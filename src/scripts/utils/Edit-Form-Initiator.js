@@ -1,6 +1,5 @@
 import { Modal } from 'bootstrap';
 import Swal from 'sweetalert2';
-import Book from '../data/Book';
 import GoTo from '../routes/Go-To';
 import { createEditFormTemplate } from '../views/templates';
 import Toast from './Toast-Initiator';
@@ -10,26 +9,27 @@ const EditFormInitiator = {
     formId,
     booksElements,
     deleteBtnId,
+    BookModel,
   }) {
-    await this._initAllEditBtns(formId, booksElements, deleteBtnId);
+    await this._initAllEditBtns(formId, booksElements, deleteBtnId, BookModel);
   },
 
-  async _initAllEditBtns(formId, elementQuery, deleteBtnId) {
+  async _initAllEditBtns(formId, elementQuery, deleteBtnId, BookModel) {
     const bookElems = document.querySelectorAll(elementQuery);
 
     bookElems.forEach((bookItem) => {
       bookItem.querySelector('.edit-btn').addEventListener('click', async (event) => {
         event.stopPropagation();
 
-        await this._showEditForm(formId, bookItem);
-        await this._initDeleteBtn(formId, deleteBtnId);
+        await this._showEditForm(formId, bookItem, BookModel);
+        await this._initDeleteBtn(formId, deleteBtnId, BookModel);
       });
     });
   },
 
-  async _showEditForm(formId, element) {
+  async _showEditForm(formId, element, BookModel) {
     const bookId = element.dataset.book_id;
-    const book = Book.getBookById(bookId);
+    const book = BookModel.getBookById(bookId);
 
     document.getElementById('form-container').innerHTML = '';
     document.getElementById('form-container').innerHTML = createEditFormTemplate({ formId, book });
@@ -40,10 +40,10 @@ const EditFormInitiator = {
     formModal.show();
 
     form.addEventListener('hidden.bs.modal', () => formModal.dispose());
-    await this._initEditFormSubmitEvent(form);
+    await this._initEditFormSubmitEvent(form, BookModel);
   },
 
-  async _initEditFormSubmitEvent(form) {
+  async _initEditFormSubmitEvent(form, BookModel) {
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
 
@@ -58,7 +58,7 @@ const EditFormInitiator = {
         isComplete,
       };
 
-      Book.updateBook(bookId, newData);
+      BookModel.updateBook(bookId, newData);
 
       const closeBtn = event.target.querySelector('button[data-bs-dismiss=modal]');
       closeBtn.click();
@@ -70,7 +70,7 @@ const EditFormInitiator = {
     });
   },
 
-  async _initDeleteBtn(formId, deleteBtnId) {
+  async _initDeleteBtn(formId, deleteBtnId, BookModel) {
     const form = document.getElementById(formId);
 
     const deleteBtn = document.getElementById(deleteBtnId);
@@ -92,7 +92,7 @@ const EditFormInitiator = {
         Swal.showLoading();
 
         const bookId = document.getElementById('edit-book-id').value;
-        Book.deleteBook(bookId);
+        BookModel.deleteBook(bookId);
 
         const closeBtn = form.querySelector('button[data-bs-dismiss=modal]');
         closeBtn.click();
