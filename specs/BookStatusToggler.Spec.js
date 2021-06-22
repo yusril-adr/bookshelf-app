@@ -63,10 +63,8 @@ describe('Toggle book isComplete status', () => {
     const toggleBtn = document.querySelector('button.toggle-isComplete');
     toggleBtn.click();
 
-    setTimeout(() => {
-      expect(Book.getBookById(bookId))
-        .toEqual({ id: bookId, isComplete: false });
-    }, 300);
+    expect(Book.getBookById(bookId))
+      .toEqual({ id: bookId, isComplete: false });
   });
 
   it('should update isComplete status to true when the book is not completed yet', async () => {
@@ -82,10 +80,7 @@ describe('Toggle book isComplete status', () => {
     const toggleBtn = document.querySelector('.toggle-isComplete');
     toggleBtn.click();
 
-    // Wait for toast animation complete
-    setTimeout(() => {
-      expect(Book.getBookById(bookId))
-        .toEqual({ id: bookId, isComplete: true });
-    }, 500);
+    expect(Book.getBookById(bookId))
+      .toEqual({ id: bookId, isComplete: true });
   });
 });

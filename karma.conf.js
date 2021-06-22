@@ -69,5 +69,10 @@ module.exports = (config) => {
     // Concurrency level
     // how many browser instances should be started simultaneously
     concurrency: Infinity,
+
+    client: {
+      captureConsole: true,
+      clearContext: false,
+    },
   });
 };

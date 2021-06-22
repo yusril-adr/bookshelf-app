@@ -14,7 +14,7 @@ const createNewBookFormPresenter = async ({ formId, togglerBtnId }) => {
 
 const createBookStatusTogglerPresenter = async () => {
   await BookStatusToggler.init({
-    booksElements: CONFIG.BOOK_ELEMENTS,
+    bookElements: CONFIG.BOOK_ELEMENTS,
     BookModel: Book,
   });
 };
