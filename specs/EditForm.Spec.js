@@ -36,7 +36,7 @@ describe('Edit a book', () => {
     });
 
     const editBtn = document.querySelector(EDIT_BTN_ELEMENT);
-    editBtn.dispatchEvent(new Event('click'));
+    editBtn.click();
 
     expect(document.getElementById(FORM_ID))
       .toBeTruthy();
@@ -61,7 +61,7 @@ describe('Edit a book', () => {
     });
 
     const editBtn = document.querySelector(EDIT_BTN_ELEMENT);
-    editBtn.dispatchEvent(new Event('click'));
+    editBtn.click();
 
     const updatedBookData = {
       title: 'Test Title',
@@ -114,7 +114,7 @@ describe('Edit a book', () => {
     });
 
     const editBtn = document.querySelector(EDIT_BTN_ELEMENT);
-    editBtn.dispatchEvent(new Event('click'));
+    editBtn.click();
 
     const updatedBookData = {
       year: new Date().getFullYear(),

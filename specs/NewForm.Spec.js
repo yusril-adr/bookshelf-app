@@ -29,7 +29,7 @@ describe('Adding a new book', () => {
     });
 
     const togglerBtn = document.getElementById(TOGGLER_BTN_ID);
-    togglerBtn.dispatchEvent(new Event('click'));
+    togglerBtn.click();
 
     expect(document.getElementById(FORM_ID))
       .toBeTruthy();
@@ -42,7 +42,7 @@ describe('Adding a new book', () => {
     });
 
     const togglerBtn = document.getElementById(TOGGLER_BTN_ID);
-    togglerBtn.dispatchEvent(new Event('click'));
+    togglerBtn.click();
 
     const testBookData = {
       title: 'Test Title',
@@ -85,7 +85,7 @@ describe('Adding a new book', () => {
     });
 
     const togglerBtn = document.getElementById(TOGGLER_BTN_ID);
-    togglerBtn.dispatchEvent(new Event('click'));
+    togglerBtn.click();
 
     const testBookData = {
       title: 'Test Title',
