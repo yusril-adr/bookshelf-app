@@ -42,42 +42,6 @@ describe('Edit a book', () => {
       .toBeTruthy();
   });
 
-  it('should hide the form modal when the submit event triggered', async () => {
-    Book.createBook({ title: 'Book Title', isComplete: true });
-
-    const books = Book.getCompletedBooks();
-
-    addBookElements(books);
-
-    await TestFactories.createEditFormInitiatorPresenter({
-      formId: FORM_ID,
-    });
-
-    const editBtn = document.querySelector(EDIT_BTN_ELEMENT);
-    editBtn.dispatchEvent(new Event('click'));
-
-    const titleInput = document.getElementById('edit-book-title');
-    titleInput.value = 'Test Title';
-
-    const authorInput = document.getElementById('edit-book-author');
-    authorInput.value = 'Test Author';
-
-    const yearInput = document.getElementById('edit-book-year');
-    yearInput.value = new Date().getFullYear();
-
-    const isCompleteCheckBox = document.getElementById('edit-book-isComplete');
-    isCompleteCheckBox.checked = false;
-
-    const submitBtn = document.querySelector('button[type=submit]');
-    submitBtn.dispatchEvent(new Event('click'));
-
-    // Waiting for the close animation first
-    setTimeout(() => {
-      expect(document.getElementById(FORM_ID))
-        .toBeFalsy();
-    }, 500);
-  });
-
   it('should update a Book when the submit button is pressed with valid input', async () => {
     const oldBookData = {
       title: 'Old Title',
@@ -102,7 +66,7 @@ describe('Edit a book', () => {
     const updatedBookData = {
       title: 'Test Title',
       author: 'Test Author',
-      year: new Date().getFullYear(),
+      year: new Date().getFullYear().toString(),
       isComplete: false,
     };
 
@@ -121,24 +85,21 @@ describe('Edit a book', () => {
     const submitBtn = document.querySelector('button[type=submit]');
     submitBtn.click();
 
-    // Waiting for the close animation first
-    setTimeout(() => {
-      expect(Book.getUnCompletedBooks())
-        .toHaveSize(0);
+    expect(Book.getCompletedBooks())
+      .toHaveSize(0);
 
-      expect(Book.getBookById(bookId))
-        .toEqual({
-          id: bookId,
-          ...updatedBookData,
-        });
-    }, 500);
+    expect(Book.getBookById(bookId))
+      .toEqual({
+        id: bookId,
+        ...updatedBookData,
+      });
   });
 
   it('should not update a Book when the submit button is pressed with invalid input', async () => {
     const oldBookData = {
       title: 'Old Title',
       author: 'Old Author',
-      year: new Date().getFullYear() - 1,
+      year: (new Date().getFullYear() - 1).toString(),
       isComplete: true,
     };
 
@@ -175,13 +136,10 @@ describe('Edit a book', () => {
     const submitBtn = document.querySelector('button[type=submit]');
     submitBtn.click();
 
-    // Waiting for the close animation first
-    setTimeout(() => {
-      expect(Book.getCompletedBooks())
-        .toHaveSize(1);
+    expect(Book.getCompletedBooks())
+      .toHaveSize(1);
 
-      expect(Book.getBookById(bookId)
-        .toEqual({ id: bookId, ...oldBookData }));
-    }, 500);
+    expect(Book.getBookById(bookId))
+      .toEqual({ id: bookId, ...oldBookData });
   });
 });

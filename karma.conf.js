@@ -72,7 +72,8 @@ module.exports = (config) => {
 
     client: {
       captureConsole: true,
-      clearContext: false,
+      // If you need to display the element
+      // clearContext: false,
     },
   });
 };
