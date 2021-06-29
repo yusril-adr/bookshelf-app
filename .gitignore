@@ -127,3 +127,4 @@ logo/
 src/images/**-small*
 src/images/**-medium*
 package-lock.json
+e2e/outputs

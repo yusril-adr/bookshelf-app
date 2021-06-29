@@ -13,7 +13,7 @@ Scenario('should be able create a new book', async ({ I }) => {
 
   const newBook = {
     title: 'Test title',
-    author: 'Test author',
+    // author: 'Test author',
     year: `${new Date().getFullYear() - 1}`,
     isComplete: true,
   };
