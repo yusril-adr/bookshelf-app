@@ -18,9 +18,9 @@ const createBookItemTemplate = ({
       </div>
       <div class="col-8">
         <div class="card-body">
-          <p class="h5 card-title mb-3">${title}</p>
-          <p class="card-text">Pengarang : ${author}</p>
-          <p class="card-text">Tahun : ${year}</p>
+          <p class="h5 card-title mb-3 book-title">${title}</p>
+          <p class="card-text">Pengarang : <span class="book-author">${author}</span></p>
+          <p class="card-text">Tahun : <span class="book-year">${year}</span></p>
         </div>
       </div>
     </div>
