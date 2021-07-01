@@ -44,7 +44,7 @@ Scenario('should be able toggle completed to uncompleted', async ({ I }) => {
 
   I.seeNumberOfElements('.book-item', 1);
 
-  assert.deepStrictEqual(newBook, showedBook);
+  assert.strictEqual(newBook.isComplete, showedBook.isComplete);
 });
 
 Scenario('should be able toggle uncompleted to completed', async ({ I }) => {
@@ -67,5 +67,5 @@ Scenario('should be able toggle uncompleted to completed', async ({ I }) => {
 
   I.seeNumberOfElements('.book-item', 1);
 
-  assert.deepStrictEqual(newBook, showedBook);
+  assert.strictEqual(newBook.isComplete, showedBook.isComplete);
 });
