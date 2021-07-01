@@ -1,6 +1,6 @@
 const assert = require('assert');
 
-Feature('Delete Books');
+Feature('Searching Books');
 
 const addBookScenario = async (I, bookTitle = 'Test title') => {
   I.amOnPage('/');
